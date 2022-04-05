@@ -22,6 +22,7 @@ class Tag(models.Model):
     articles = models.ManyToManyField(Article, through='Scopes')
 
     class Meta:
+        ordering = ['name']
         verbose_name = 'Раздел'
         verbose_name_plural = 'Разделы'
 
@@ -35,5 +36,6 @@ class Scopes(models.Model):
     is_main = models.BooleanField(verbose_name='Основной')
 
     class Meta:
+        ordering = ['-is_main', 'tag']
         verbose_name = 'Тематика статьи'
         verbose_name_plural = 'Тематики статьи'
