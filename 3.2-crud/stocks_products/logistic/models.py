@@ -17,19 +17,7 @@ class Stock(models.Model):
 
 
 class StockProduct(models.Model):
-    stock = models.ForeignKey(
-        Stock,
-        on_delete=models.CASCADE,
-        related_name='positions',
-    )
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='positions',
-    )
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE, related_name='positions',)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='positions',)
     quantity = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(
-        max_digits=18,
-        decimal_places=2,
-        validators=[MinValueValidator(0)],
-    )
+    price = models.DecimalField(max_digits=18, decimal_places=2, validators=[MinValueValidator(0)],)
